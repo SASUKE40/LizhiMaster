@@ -13,33 +13,36 @@ var lizhi;
         __extends(GameContainer, _super);
         function GameContainer() {
             _super.call(this);
+            /**計時器*/
+            this.timeCount = 30;
+            this.timer = new egret.Timer(1000, 30);
             this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         }
-        /**��ʼ��*/
+        /**初始化*/
         GameContainer.prototype.onAddToStage = function (event) {
             this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
             this.createGameScene();
         };
-        /**������Ϸ����*/
+        /**创建游戏场景*/
         GameContainer.prototype.createGameScene = function () {
             this.stageW = this.stage.stageWidth;
             this.stageH = this.stage.stageHeight;
-            //�_ʼ���o
-            this.btnStart = this.createBitmapByName("start"); //�_ʼ���o
-            this.btnStart.x = (this.stageW - this.btnStart.width) / 2; //���ж�λ
-            this.btnStart.y = (this.stageH - this.btnStart.height) / 2 + 240; //���ж�λ+240
-            this.btnStart.touchEnabled = true; //��������
-            this.btnStart.addEventListener(egret.TouchEvent.TOUCH_TAP, this.gameStart, this); //������ť��ʼ��Ϸ
+            //開始按鈕
+            this.btnStart = this.createBitmapByName("star"); //開始按鈕
+            this.btnStart.x = (this.stageW - this.btnStart.width) / 2; //居中定位
+            this.btnStart.y = (this.stageH - this.btnStart.height) / 2 + 240; //居中定位+240
+            this.btnStart.touchEnabled = true; //开启触碰
+            this.btnStart.addEventListener(egret.TouchEvent.TOUCH_TAP, this.gameStart, this); //点击按钮开始游戏
             this.addChild(this.btnStart);
-            //�_ʼ���}
-            this.titleStart = this.createBitmapByName("title"); //�_ʼ���}
-            this.titleStart.x = (this.stageW - this.titleStart.width) / 2; //���ж�λ
-            this.titleStart.y = (this.stageH - this.titleStart.height) / 2 - 240; //���ж�λ-240
+            //開始標題
+            this.titleStart = this.createBitmapByName("title"); //開始標題
+            this.titleStart.x = (this.stageW - this.titleStart.width) / 2; //居中定位
+            this.titleStart.y = (this.stageH - this.titleStart.height) / 2 - 240; //居中定位-240
             this.addChild(this.titleStart);
-            //�_ʼ����
-            this.descriptionStart = this.createBitmapByName("description"); //�_ʼ����
-            this.descriptionStart.x = (this.stageW - this.descriptionStart.width) / 2; //���ж�λ
-            this.descriptionStart.y = (this.stageH - this.descriptionStart.height) / 2 - 100; //���ж�λ-100
+            //開始描述
+            this.descriptionStart = this.createBitmapByName("description_1"); //開始描述
+            this.descriptionStart.x = (this.stageW - this.descriptionStart.width) / 2; //居中定位
+            this.descriptionStart.y = (this.stageH - this.descriptionStart.height) / 2 - 100; //居中定位-100
             this.addChild(this.descriptionStart);
         };
         GameContainer.prototype.gameStart = function (evt) {
@@ -53,37 +56,48 @@ var lizhi;
                 this.removeChild(this.descriptionStart);
             }
             this.init();
+            this.preInit();
+            //this.onGameOver();
+        };
+        GameContainer.prototype.preInit = function () {
+            this.tipPanel = new lizhi.TipPanel();
+            this.tipPanel.x = (this.stageW - this.tipPanel.width) / 2; //居中定位
+            this.tipPanel.y = (this.stageH - this.tipPanel.height) / 2; //居中定位
+            this.addChild(this.tipPanel);
+            this.tipPanel.addEventListener("countDown", this.onCountDown, this);
+            var timer = new egret.Timer(3000, 1);
+            timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.countDown, this);
+            timer.start();
+        };
+        GameContainer.prototype.countDown = function () {
+            this.tipPanel.countDown();
+        };
+        GameContainer.prototype.onCountDown = function () {
+            //注册事件侦听器
+            this.timer.addEventListener(egret.TimerEvent.TIMER, this.onTimeDown, this);
+            this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.onGameOver, this);
+            this.timer.start();
         };
         GameContainer.prototype.init = function () {
-            this.topMost = lizhi.createBitmapByName("top_most");
-            this.topMost.x = (this.stageW - this.topMost.width) / 2; //���ж�λ
-            this.topMost.y = 0; //����
-            this.addChild(this.topMost);
-            this.litchi = lizhi.createBitmapByName("litchi");
-            this.litchi.x = (this.stageW - this.litchi.width) / 2 - 200;
-            this.litchi.y = (this.stageH - this.litchi.height) / 2 + 300;
-            this.litchi.touchEnabled = true; //��������
-            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLitchiTouch, this); //������ť��ʼ��Ϸ
-            this.addChild(this.litchi);
-            this.cherry = lizhi.createBitmapByName("cherry");
-            this.cherry.x = (this.stageW - this.cherry.width) / 2 + 200;
-            this.cherry.y = (this.stageH - this.cherry.height) / 2 + 300;
-            this.cherry.touchEnabled = true; //��������
-            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCherryTouch, this); //������ť��ʼ��Ϸ
-            this.addChild(this.cherry);
-            this.fruitGroup = new lizhi.FruitGroup();
-            this.fruitGroup.x = (this.stageW - this.fruitGroup.width) / 2; //���ж�λ
-            this.fruitGroup.y = (this.stageH - this.fruitGroup.height) / 2; //���ж�λ
-            this.addChild(this.fruitGroup);
+            this.gamePanel = new lizhi.GamePanel();
+            this.gamePanel.x = (this.stageW - this.gamePanel.width) / 2; //居中定位
+            this.gamePanel.y = (this.stageH - this.gamePanel.height) / 2; //居中定位
+            this.gamePanel.addEventListener("gameOver", this.onGameOver, this);
+            this.addChild(this.gamePanel);
         };
-        GameContainer.prototype.onLitchiTouch = function (evt) {
-            this.fruitGroup.down(lizhi.FruitType.LITCHI);
+        GameContainer.prototype.onTimeDown = function () {
+            this.timeCount--;
+            this.gamePanel.changeTime(this.timeCount);
         };
-        GameContainer.prototype.onCherryTouch = function (evt) {
-            this.fruitGroup.down(lizhi.FruitType.CHERRY);
+        GameContainer.prototype.onGameOver = function () {
+            this.scorePanel = new lizhi.ScorePanel();
+            this.scorePanel.x = (this.stageW - this.scorePanel.width) / 2; //居中定位
+            this.scorePanel.y = (this.stageH - this.scorePanel.height) / 2; //居中定位
+            this.addChild(this.scorePanel);
+            this.removeChild(this.gamePanel);
         };
         /**
-         * ����name�ؼ��ִ���һ��Bitmap������name�������ο�resources/resource.json�����ļ������ݡ�
+         * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
          * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
          */
         GameContainer.prototype.createBitmapByName = function (name) {

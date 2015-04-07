@@ -10,9 +10,9 @@ module lizhi {
         private level:Array<number> = [0.75,0.6,0.4,0.2];
         private step:number = 180;
         private fruitNumber:number = 4;
-        /**ÀóÖ¦Â•Òô*/
+        /**è”æè²éŸ³*/
         private litchiSound:egret.Sound;
-        /**™ÑÌÒÂ•Òô*/
+        /**æ«»æ¡ƒè²éŸ³*/
         private cherrySound:egret.Sound;
         public constructor() {
             super();
@@ -40,7 +40,7 @@ module lizhi {
                 this.removeChild(lastFruit);
                 if(lastFruit.fruitType == FruitType.LITCHI) {
                     Data.score++;
-                    console.log(Data.score);
+                    this.dispatchEventWith("scoreAdd");
                     this.litchiSound.play();
                 } else {
                     this.cherrySound.play();

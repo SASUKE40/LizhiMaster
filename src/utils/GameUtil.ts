@@ -6,7 +6,7 @@ module lizhi {
     export class GameUtil {
 
         /**
-         * »ùÓÚ¾ØĞÎµÄÅö×²¼ì²â
+         * åŸºäºçŸ©å½¢çš„ç¢°æ’æ£€æµ‹
          */
         public static hitTest(obj1:egret.DisplayObject,obj2:egret.DisplayObject):boolean
         {
@@ -21,7 +21,7 @@ module lizhi {
     }
 
     /**
-     * ¸ù¾İname¹Ø¼ü×Ö´´½¨Ò»¸öBitmap¶ÔÏó¡£nameÊôĞÔÇë²Î¿¼resources/resource.jsonÅäÖÃÎÄ¼şµÄÄÚÈİ¡£
+     * æ ¹æ®nameå…³é”®å­—åˆ›å»ºä¸€ä¸ªBitmapå¯¹è±¡ã€‚nameå±æ€§è¯·å‚è€ƒresources/resource.jsoné…ç½®æ–‡ä»¶çš„å†…å®¹ã€‚
      */
     export function createBitmapByName(name:string):egret.Bitmap {
         var result:egret.Bitmap = new egret.Bitmap();

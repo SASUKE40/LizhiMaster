@@ -8,56 +8,57 @@ module lizhi {
         private stageW:number;
         /**@private*/
         private stageH:number;
-        /**é_Ê¼°´âo*/
+        /**é–‹å§‹æŒ‰éˆ•*/
         private btnStart:egret.Bitmap;
-        /**é_Ê¼˜Ëî}*/
+        /**é–‹å§‹æ¨™é¡Œ*/
         private titleStart:egret.Bitmap;
-        /**é_Ê¼ÃèÊö*/
+        /**é–‹å§‹æè¿°*/
         private descriptionStart:egret.Bitmap;
-        /**í”²¿ˆDÆ¬*/
-        private topMost:egret.Bitmap;
-        /**ÀóÖ¦°´âo*/
-        private litchi:egret.Bitmap;
-        /**™ÑÌÒ°´âo*/
-        private cherry:egret.Bitmap;
-        /**Ë®¹û½MºÏ*/
-        private fruitGroup:lizhi.FruitGroup;
+        /**æç¤ºé¢æ¿*/
+        private tipPanel:lizhi.TipPanel;
+        /**éŠæˆ²é¢æ¿*/
+        private gamePanel:lizhi.GamePanel;
+        /**åˆ†æ•¸é¢æ¿*/
+        private scorePanel:lizhi.ScorePanel;
+        /**è¨ˆæ™‚å™¨*/
+        private timeCount:number = 30;
+        private timer:egret.Timer = new egret.Timer(1000,30);
 
         public constructor() {
             super();
             this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
         }
 
-        /**³õÊ¼»¯*/
+        /**åˆå§‹åŒ–*/
         private onAddToStage(event:egret.Event) {
             this.removeEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
             this.createGameScene();
         }
 
-        /**´´½¨ÓÎÏ·³¡¾°*/
+        /**åˆ›å»ºæ¸¸æˆåœºæ™¯*/
         private createGameScene():void {
             this.stageW = this.stage.stageWidth;
             this.stageH = this.stage.stageHeight;
 
-            //é_Ê¼°´âo
-            this.btnStart = this.createBitmapByName("start");//é_Ê¼°´âo
-            this.btnStart.x = (this.stageW-this.btnStart.width)/2;//¾ÓÖĞ¶¨Î»
-            this.btnStart.y = (this.stageH-this.btnStart.height)/2 + 240;//¾ÓÖĞ¶¨Î»+240
-            this.btnStart.touchEnabled = true;//¿ªÆô´¥Åö
-            this.btnStart.addEventListener(egret.TouchEvent.TOUCH_TAP,this.gameStart,this);//µã»÷°´Å¥¿ªÊ¼ÓÎÏ·
+            //é–‹å§‹æŒ‰éˆ•
+            this.btnStart = this.createBitmapByName("star");//é–‹å§‹æŒ‰éˆ•
+            this.btnStart.x = (this.stageW-this.btnStart.width)/2;//å±…ä¸­å®šä½
+            this.btnStart.y = (this.stageH-this.btnStart.height)/2 + 240;//å±…ä¸­å®šä½+240
+            this.btnStart.touchEnabled = true;//å¼€å¯è§¦ç¢°
+            this.btnStart.addEventListener(egret.TouchEvent.TOUCH_TAP,this.gameStart,this);//ç‚¹å‡»æŒ‰é’®å¼€å§‹æ¸¸æˆ
             this.addChild(this.btnStart);
 
-            //é_Ê¼˜Ëî}
-            this.titleStart = this.createBitmapByName("title");//é_Ê¼˜Ëî}
-            this.titleStart.x = (this.stageW-this.titleStart.width)/2;//¾ÓÖĞ¶¨Î»
-            this.titleStart.y = (this.stageH-this.titleStart.height)/2 - 240;//¾ÓÖĞ¶¨Î»-240
+            //é–‹å§‹æ¨™é¡Œ
+            this.titleStart = this.createBitmapByName("title");//é–‹å§‹æ¨™é¡Œ
+            this.titleStart.x = (this.stageW-this.titleStart.width)/2;//å±…ä¸­å®šä½
+            this.titleStart.y = (this.stageH-this.titleStart.height)/2 - 240;//å±…ä¸­å®šä½-240
             this.addChild(this.titleStart);
 
 
-            //é_Ê¼ÃèÊö
-            this.descriptionStart = this.createBitmapByName("description");//é_Ê¼ÃèÊö
-            this.descriptionStart.x = (this.stageW-this.descriptionStart.width)/2;//¾ÓÖĞ¶¨Î»
-            this.descriptionStart.y = (this.stageH-this.descriptionStart.height)/2 - 100;//¾ÓÖĞ¶¨Î»-100
+            //é–‹å§‹æè¿°
+            this.descriptionStart = this.createBitmapByName("description_1");//é–‹å§‹æè¿°
+            this.descriptionStart.x = (this.stageW-this.descriptionStart.width)/2;//å±…ä¸­å®šä½
+            this.descriptionStart.y = (this.stageH-this.descriptionStart.height)/2 - 100;//å±…ä¸­å®šä½-100
             this.addChild(this.descriptionStart);
 
         }
@@ -73,47 +74,61 @@ module lizhi {
                 this.removeChild(this.descriptionStart);
             }
             this.init();
+            this.preInit();
+            //this.onGameOver();
+        }
+
+        private preInit() {
+            this.tipPanel = new lizhi.TipPanel();
+            this.tipPanel.x = (this.stageW-this.tipPanel.width)/2;//å±…ä¸­å®šä½
+            this.tipPanel.y = (this.stageH-this.tipPanel.height)/2;//å±…ä¸­å®šä½
+            this.addChild(this.tipPanel);
+
+            this.tipPanel.addEventListener("countDown" , this.onCountDown , this);
+
+            var timer = new egret.Timer(3000, 1);
+            timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.countDown,this);
+            timer.start();
+        }
+
+        private countDown() {
+            this.tipPanel.countDown();
+        }
+
+        private onCountDown() {
+            //æ³¨å†Œäº‹ä»¶ä¾¦å¬å™¨
+            this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimeDown,this);
+            this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.onGameOver,this);
+            this.timer.start();
         }
 
         private init() {
-
-            this.topMost = createBitmapByName("top_most");
-            this.topMost.x = (this.stageW-this.topMost.width)/2;//¾ÓÖĞ¶¨Î»
-            this.topMost.y = 0;//¾Óí”
-            this.addChild(this.topMost);
-
-            this.litchi = createBitmapByName("litchi");
-            this.litchi.x = (this.stageW-this.litchi.width)/2 - 200;
-            this.litchi.y = (this.stageH-this.litchi.height)/2 + 300;
-            this.litchi.touchEnabled = true;//¿ªÆô´¥Åö
-            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onLitchiTouch,this);//µã»÷°´Å¥¿ªÊ¼ÓÎÏ·
-            this.addChild(this.litchi);
-
-            this.cherry = createBitmapByName("cherry");
-            this.cherry.x = (this.stageW-this.cherry.width)/2 + 200;
-            this.cherry.y = (this.stageH-this.cherry.height)/2 + 300;
-            this.cherry.touchEnabled = true;//¿ªÆô´¥Åö
-            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCherryTouch,this);//µã»÷°´Å¥¿ªÊ¼ÓÎÏ·
-            this.addChild(this.cherry);
-
-            this.fruitGroup = new lizhi.FruitGroup();
-            this.fruitGroup.x = (this.stageW-this.fruitGroup.width)/2;//¾ÓÖĞ¶¨Î»
-            this.fruitGroup.y = (this.stageH-this.fruitGroup.height)/2;//¾ÓÖĞ¶¨Î»
-            this.addChild(this.fruitGroup);
+            this.gamePanel = new lizhi.GamePanel();
+            this.gamePanel.x = (this.stageW-this.gamePanel.width)/2;//å±…ä¸­å®šä½
+            this.gamePanel.y = (this.stageH-this.gamePanel.height)/2;//å±…ä¸­å®šä½
+            this.gamePanel.addEventListener("gameOver", this.onGameOver, this);
+            this.addChild(this.gamePanel);
         }
 
 
-        private onLitchiTouch(evt:egret.TouchEvent):void {
-            this.fruitGroup.down(FruitType.LITCHI);
-
+        private onTimeDown() {
+            this.timeCount--;
+            this.gamePanel.changeTime(this.timeCount);
         }
 
-        private onCherryTouch(evt:egret.TouchEvent):void {
-            this.fruitGroup.down(FruitType.CHERRY);
+        private onGameOver() {
+            this.scorePanel = new lizhi.ScorePanel();
+            this.scorePanel.x = (this.stageW-this.scorePanel.width)/2;//å±…ä¸­å®šä½
+            this.scorePanel.y = (this.stageH-this.scorePanel.height)/2;//å±…ä¸­å®šä½
+            this.addChild(this.scorePanel);
+            this.removeChild(this.gamePanel);
         }
+
+
+
 
         /**
-         * ¸ù¾İname¹Ø¼ü×Ö´´½¨Ò»¸öBitmap¶ÔÏó¡£nameÊôĞÔÇë²Î¿¼resources/resource.jsonÅäÖÃÎÄ¼şµÄÄÚÈİ¡£
+         * æ ¹æ®nameå…³é”®å­—åˆ›å»ºä¸€ä¸ªBitmapå¯¹è±¡ã€‚nameå±æ€§è¯·å‚è€ƒresources/resource.jsoné…ç½®æ–‡ä»¶çš„å†…å®¹ã€‚
          * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
          */
         private createBitmapByName(name: string): egret.Bitmap {

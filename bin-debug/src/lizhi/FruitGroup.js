@@ -40,7 +40,7 @@ var lizhi;
                 this.removeChild(lastFruit);
                 if (lastFruit.fruitType == lizhi.FruitType.LITCHI) {
                     lizhi.Data.score++;
-                    console.log(lizhi.Data.score);
+                    this.dispatchEventWith("scoreAdd");
                     this.litchiSound.play();
                 }
                 else {

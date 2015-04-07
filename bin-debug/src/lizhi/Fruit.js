@@ -17,7 +17,7 @@ var lizhi;
             var r = Math.random();
             if (r <= rate) {
                 this._fruitType = lizhi.FruitType.LITCHI;
-                this.texture = RES.getRes(this._fruitType + "_1");
+                this.texture = RES.getRes("lizhi");
             }
             else {
                 r = Math.random();

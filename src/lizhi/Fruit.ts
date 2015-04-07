@@ -12,7 +12,7 @@ module lizhi {
             var r:number = Math.random();
             if (r <= rate) {
                 this._fruitType = FruitType.LITCHI;
-                this.texture = RES.getRes(this._fruitType+"_1");
+                this.texture = RES.getRes("lizhi");
             } else {
                 r = Math.random();
                 if (r < 0.5) {

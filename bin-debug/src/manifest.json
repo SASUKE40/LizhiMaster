@@ -2,8 +2,12 @@
 	"lizhi\\FruitType.ts",
 	"lizhi\\Data.ts",
 	"lizhi\\Fruit.ts",
-	"lizhi\\FruitGroup.ts",
 	"utils\\GameUtil.ts",
+	"lizhi\\ControlPanel.ts",
+	"lizhi\\FruitGroup.ts",
+	"lizhi\\GamePanel.ts",
+	"lizhi\\ScorePanel.ts",
+	"lizhi\\TipPanel.ts",
 	"LoadingUI.ts",
 	"lizhi\\GameContainer.ts",
 	"Main.ts"

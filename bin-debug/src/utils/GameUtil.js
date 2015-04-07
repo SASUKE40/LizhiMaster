@@ -7,7 +7,7 @@ var lizhi;
         function GameUtil() {
         }
         /**
-         * ���ھ��ε���ײ����
+         * 基于矩形的碰撞检测
          */
         GameUtil.hitTest = function (obj1, obj2) {
             var rect1 = obj1.getBounds();
@@ -23,7 +23,7 @@ var lizhi;
     lizhi.GameUtil = GameUtil;
     GameUtil.prototype.__class__ = "lizhi.GameUtil";
     /**
-     * ����name�ؼ��ִ���һ��Bitmap������name�������ο�resources/resource.json�����ļ������ݡ�
+     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      */
     function createBitmapByName(name) {
         var result = new egret.Bitmap();

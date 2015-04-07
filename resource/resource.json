@@ -1,13 +1,13 @@
 {
 	"groups":[
 	{
-		"keys":"preloadsheet,left,right",
+		"keys":"left,right,preloadsheet",
 		"name":"preload"
 	}],
 	"resources":[
 	{
 		"name":"preloadsheet",
-		"subkeys":"banner1,title,top_most,description,banner,count,cherry_2,litchi,download,cherry_1,sound,share,cherry,over,retry,banner3,start,time,bg,banner2,mute,litchi_1",
+		"subkeys":"bg,black,black_share,description_3,description_2,banner3,banner1,banner2,star,title,most_top,GO,retry,share,cherry_icon,lizhi_icon,cherry_1,cherry_2,description_1,lizhi,3,2,1,time,sound",
 		"type":"sheet",
 		"url":"assets/preloadsheet.json"
 	},
