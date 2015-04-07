@@ -18,6 +18,8 @@ var lizhi;
             this.retry = lizhi.createBitmapByName("retry");
             this.retry.x = (lizhi.getWidth() - this.retry.width) / 2 - 160;
             this.retry.y = (lizhi.getHeight() - this.retry.height) / 2 + 240;
+            this.retry.touchEnabled = true; //开启触碰
+            this.retry.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onRetry, this); //点击按钮重新游戏
             this.addChild(this.retry);
             this.share = lizhi.createBitmapByName("share");
             this.share.x = (lizhi.getWidth() - this.share.width) / 2 + 160;
@@ -39,7 +41,7 @@ var lizhi;
             this.score.x = 10;
             this.score.y = (lizhi.getHeight() - this.score.height) / 2 - 260;
             this.score.text = "0";
-            this.score.fontFamily = "幼圆";
+            this.score.fontFamily = "微软雅黑";
             this.score.bold = true;
             this.addChild(this.score);
             this.message = new egret.TextField();
@@ -58,8 +60,14 @@ var lizhi;
             this.message.bold = true;
             this.addChild(this.message);
         }
+        ScorePanel.prototype.onRetry = function () {
+            this.dispatchEventWith("retryGame");
+        };
         ScorePanel.prototype.changeMessage = function (msg) {
             this.message.text = msg;
+        };
+        ScorePanel.prototype.changeScore = function (score) {
+            this.score.text = score.toString();
         };
         return ScorePanel;
     })(egret.Sprite);

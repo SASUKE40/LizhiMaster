@@ -25,14 +25,10 @@ var lizhi;
             this.litchi = lizhi.createBitmapByName("lizhi_icon");
             this.litchi.x = (lizhi.getWidth() - this.litchi.width) / 2 - 200;
             this.litchi.y = (lizhi.getHeight() - this.litchi.height) / 2 + 300;
-            this.litchi.touchEnabled = true; //��������
-            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLitchiTouch, this); //������ť��ʼ��Ϸ
             this.addChild(this.litchi);
             this.cherry = lizhi.createBitmapByName("cherry_icon");
             this.cherry.x = (lizhi.getWidth() - this.cherry.width) / 2 + 200;
             this.cherry.y = (lizhi.getHeight() - this.cherry.height) / 2 + 300;
-            this.cherry.touchEnabled = true; //��������
-            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCherryTouch, this); //������ť��ʼ��Ϸ
             this.addChild(this.cherry);
             this.fruitGroup = new lizhi.FruitGroup();
             this.fruitGroup.x = (lizhi.getWidth() - this.fruitGroup.width) / 2; //���ж�λ
@@ -44,6 +40,12 @@ var lizhi;
             this.controlPanel.x = (lizhi.getWidth() - this.controlPanel.width) / 2; //���ж�λ
             this.controlPanel.y = (lizhi.getHeight() - this.controlPanel.height) / 2; //���ж�λ
             this.addChild(this.controlPanel);
+        };
+        GamePanel.prototype.canTouch = function () {
+            this.litchi.touchEnabled = true; //��������
+            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLitchiTouch, this); //������ť��ʼ��Ϸ
+            this.cherry.touchEnabled = true; //��������
+            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCherryTouch, this); //������ť��ʼ��Ϸ
         };
         GamePanel.prototype.onLitchiTouch = function (evt) {
             this.fruitGroup.down(lizhi.FruitType.LITCHI);

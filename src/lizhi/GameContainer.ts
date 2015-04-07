@@ -22,7 +22,7 @@ module lizhi {
         private scorePanel:lizhi.ScorePanel;
         /**計時器*/
         private timeCount:number = 30;
-        private timer:egret.Timer = new egret.Timer(1000,30);
+        private timer:egret.Timer;
 
         public constructor() {
             super();
@@ -83,19 +83,15 @@ module lizhi {
             this.tipPanel.x = (this.stageW-this.tipPanel.width)/2;//居中定位
             this.tipPanel.y = (this.stageH-this.tipPanel.height)/2;//居中定位
             this.addChild(this.tipPanel);
-
-            this.tipPanel.addEventListener("countDown" , this.onCountDown , this);
-
-            var timer = new egret.Timer(3000, 1);
-            timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.countDown,this);
-            timer.start();
-        }
-
-        private countDown() {
             this.tipPanel.countDown();
+            this.tipPanel.addEventListener("countDown", this.onCountDown, this);
         }
+
 
         private onCountDown() {
+            this.gamePanel.canTouch();
+            this.timeCount = 30;
+            this.timer  = new egret.Timer(1000,30);
             //注册事件侦听器
             this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimeDown,this);
             this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.onGameOver,this);
@@ -103,6 +99,7 @@ module lizhi {
         }
 
         private init() {
+            Data.score = 0;
             this.gamePanel = new lizhi.GamePanel();
             this.gamePanel.x = (this.stageW-this.gamePanel.width)/2;//居中定位
             this.gamePanel.y = (this.stageH-this.gamePanel.height)/2;//居中定位
@@ -120,12 +117,20 @@ module lizhi {
             this.scorePanel = new lizhi.ScorePanel();
             this.scorePanel.x = (this.stageW-this.scorePanel.width)/2;//居中定位
             this.scorePanel.y = (this.stageH-this.scorePanel.height)/2;//居中定位
+            this.scorePanel.changeScore(Data.score);
             this.addChild(this.scorePanel);
+            this.scorePanel.addEventListener("retryGame", this.onRetry, this);
+            this.timer.removeEventListener(egret.TimerEvent.TIMER,this.onTimeDown,this);
+            this.timer.removeEventListener(egret.TimerEvent.TIMER_COMPLETE,this.onGameOver,this);
             this.removeChild(this.gamePanel);
         }
 
+        private onRetry() {
 
-
+            this.removeChild(this.scorePanel);
+            this.init();
+            this.onCountDown();
+        }
 
         /**
          * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

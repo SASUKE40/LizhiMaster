@@ -33,15 +33,11 @@ module lizhi {
             this.litchi = createBitmapByName("lizhi_icon");
             this.litchi.x = (getWidth()-this.litchi.width)/2 - 200;
             this.litchi.y = (getHeight()-this.litchi.height)/2 + 300;
-            this.litchi.touchEnabled = true;//开启触碰
-            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onLitchiTouch,this);//点击按钮开始游戏
             this.addChild(this.litchi);
 
             this.cherry = createBitmapByName("cherry_icon");
             this.cherry.x = (getWidth()-this.cherry.width)/2 + 200;
             this.cherry.y = (getHeight()-this.cherry.height)/2 + 300;
-            this.cherry.touchEnabled = true;//开启触碰
-            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCherryTouch,this);//点击按钮开始游戏
             this.addChild(this.cherry);
 
             this.fruitGroup = new lizhi.FruitGroup();
@@ -56,6 +52,15 @@ module lizhi {
             this.controlPanel.y = (getHeight()-this.controlPanel.height)/2;//居中定位
             this.addChild(this.controlPanel);
         }
+
+        public canTouch() {
+            this.litchi.touchEnabled = true;//开启触碰
+            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onLitchiTouch,this);//点击按钮开始游戏
+            this.cherry.touchEnabled = true;//开启触碰
+            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCherryTouch,this);//点击按钮开始游戏
+
+        }
+
         private onLitchiTouch(evt:egret.TouchEvent):void {
             this.fruitGroup.down(FruitType.LITCHI);
         }

@@ -18,6 +18,8 @@ module lizhi {
             this.retry = lizhi.createBitmapByName("retry");
             this.retry.x = (lizhi.getWidth()-this.retry.width)/2 - 160;
             this.retry.y = (lizhi.getHeight()-this.retry.height)/2 + 240;
+            this.retry.touchEnabled = true;//开启触碰
+            this.retry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onRetry,this);//点击按钮重新游戏
             this.addChild(this.retry);
 
             this.share = lizhi.createBitmapByName("share");
@@ -43,7 +45,7 @@ module lizhi {
             this.score.x = 10;
             this.score.y = (getHeight()-this.score.height)/2 - 260;
             this.score.text = "0";
-            this.score.fontFamily = "幼圆";
+            this.score.fontFamily = "微软雅黑";
             this.score.bold = true;
             this.addChild(this.score);
 
@@ -64,9 +66,16 @@ module lizhi {
             this.addChild(this.message);
         }
 
+        public onRetry() {
+            this.dispatchEventWith("retryGame");
+        }
 
         public changeMessage(msg:string) {
             this.message.text = msg;
+        }
+
+        public changeScore(score:number) {
+            this.score.text = score.toString();
         }
     }
 }
