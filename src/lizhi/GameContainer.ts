@@ -14,6 +14,14 @@ module lizhi {
         private titleStart:egret.Bitmap;
         /**開始描述*/
         private descriptionStart:egret.Bitmap;
+        /**頂部圖片*/
+        private topMost:egret.Bitmap;
+        /**荔枝按鈕*/
+        private litchi:egret.Bitmap;
+        /**櫻桃按鈕*/
+        private cherry:egret.Bitmap;
+        /**水果組合*/
+        private fruitGroup:lizhi.FruitGroup;
 
         public constructor() {
             super();
@@ -55,7 +63,53 @@ module lizhi {
         }
 
         private gameStart(evt:egret.TouchEvent) {
+            if(this.btnStart.parent) {
+                this.removeChild(this.btnStart);
+            }
+            if(this.titleStart.parent) {
+                this.removeChild(this.titleStart);
+            }
+            if(this.descriptionStart.parent) {
+                this.removeChild(this.descriptionStart);
+            }
+            this.init();
+        }
 
+        private init() {
+
+            this.topMost = createBitmapByName("top_most");
+            this.topMost.x = (this.stageW-this.topMost.width)/2;//居中定位
+            this.topMost.y = 0;//居頂
+            this.addChild(this.topMost);
+
+            this.litchi = createBitmapByName("litchi");
+            this.litchi.x = (this.stageW-this.litchi.width)/2 - 200;
+            this.litchi.y = (this.stageH-this.litchi.height)/2 + 300;
+            this.litchi.touchEnabled = true;//开启触碰
+            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onLitchiTouch,this);//点击按钮开始游戏
+            this.addChild(this.litchi);
+
+            this.cherry = createBitmapByName("cherry");
+            this.cherry.x = (this.stageW-this.cherry.width)/2 + 200;
+            this.cherry.y = (this.stageH-this.cherry.height)/2 + 300;
+            this.cherry.touchEnabled = true;//开启触碰
+            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onCherryTouch,this);//点击按钮开始游戏
+            this.addChild(this.cherry);
+
+            this.fruitGroup = new lizhi.FruitGroup();
+            this.fruitGroup.x = (this.stageW-this.fruitGroup.width)/2;//居中定位
+            this.fruitGroup.y = (this.stageH-this.fruitGroup.height)/2;//居中定位
+            this.addChild(this.fruitGroup);
+        }
+
+
+        private onLitchiTouch(evt:egret.TouchEvent):void {
+            this.fruitGroup.down(FruitType.LITCHI);
+
+        }
+
+        private onCherryTouch(evt:egret.TouchEvent):void {
+            this.fruitGroup.down(FruitType.CHERRY);
         }
 
         /**

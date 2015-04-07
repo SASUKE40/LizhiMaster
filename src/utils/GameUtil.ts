@@ -29,4 +29,12 @@ module lizhi {
         result.texture = texture;
         return result;
     }
+
+    export function getHeight() {
+        return egret.MainContext.instance.stage.stageHeight;
+    }
+
+    export function getWidth() {
+        return egret.MainContext.instance.stage.stageWidth;
+    }
 }

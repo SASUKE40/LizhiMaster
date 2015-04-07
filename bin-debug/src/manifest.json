@@ -1,4 +1,8 @@
 [
+	"lizhi\\FruitType.ts",
+	"lizhi\\Data.ts",
+	"lizhi\\Fruit.ts",
+	"lizhi\\FruitGroup.ts",
 	"utils\\GameUtil.ts",
 	"LoadingUI.ts",
 	"lizhi\\GameContainer.ts",

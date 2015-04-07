@@ -1,14 +1,26 @@
 {
 	"groups":[
 	{
-		"keys":"preloadsheet",
+		"keys":"preloadsheet,left,right",
 		"name":"preload"
 	}],
 	"resources":[
 	{
 		"name":"preloadsheet",
-		"subkeys":"bg,over,start,title,banner3,banner2,banner1,banner,top_most,retry,share,cherry,litchi,cherry_1,cherry_2,description,litchi_1,download,count,sound,time,mute",
+		"subkeys":"banner1,title,top_most,description,banner,count,cherry_2,litchi,download,cherry_1,sound,share,cherry,over,retry,banner3,start,time,bg,banner2,mute,litchi_1",
 		"type":"sheet",
 		"url":"assets/preloadsheet.json"
+	},
+	{
+		"name":"left",
+		"soundType":"effect",
+		"type":"sound",
+		"url":"assets/left.mp3"
+	},
+	{
+		"name":"right",
+		"soundType":"effect",
+		"type":"sound",
+		"url":"assets/right.mp3"
 	}]
 }

@@ -43,6 +43,44 @@ var lizhi;
             this.addChild(this.descriptionStart);
         };
         GameContainer.prototype.gameStart = function (evt) {
+            if (this.btnStart.parent) {
+                this.removeChild(this.btnStart);
+            }
+            if (this.titleStart.parent) {
+                this.removeChild(this.titleStart);
+            }
+            if (this.descriptionStart.parent) {
+                this.removeChild(this.descriptionStart);
+            }
+            this.init();
+        };
+        GameContainer.prototype.init = function () {
+            this.topMost = lizhi.createBitmapByName("top_most");
+            this.topMost.x = (this.stageW - this.topMost.width) / 2; //���ж�λ
+            this.topMost.y = 0; //����
+            this.addChild(this.topMost);
+            this.litchi = lizhi.createBitmapByName("litchi");
+            this.litchi.x = (this.stageW - this.litchi.width) / 2 - 200;
+            this.litchi.y = (this.stageH - this.litchi.height) / 2 + 300;
+            this.litchi.touchEnabled = true; //��������
+            this.litchi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLitchiTouch, this); //������ť��ʼ��Ϸ
+            this.addChild(this.litchi);
+            this.cherry = lizhi.createBitmapByName("cherry");
+            this.cherry.x = (this.stageW - this.cherry.width) / 2 + 200;
+            this.cherry.y = (this.stageH - this.cherry.height) / 2 + 300;
+            this.cherry.touchEnabled = true; //��������
+            this.cherry.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onCherryTouch, this); //������ť��ʼ��Ϸ
+            this.addChild(this.cherry);
+            this.fruitGroup = new lizhi.FruitGroup();
+            this.fruitGroup.x = (this.stageW - this.fruitGroup.width) / 2; //���ж�λ
+            this.fruitGroup.y = (this.stageH - this.fruitGroup.height) / 2; //���ж�λ
+            this.addChild(this.fruitGroup);
+        };
+        GameContainer.prototype.onLitchiTouch = function (evt) {
+            this.fruitGroup.down(lizhi.FruitType.LITCHI);
+        };
+        GameContainer.prototype.onCherryTouch = function (evt) {
+            this.fruitGroup.down(lizhi.FruitType.CHERRY);
         };
         /**
          * ����name�ؼ��ִ���һ��Bitmap������name�������ο�resources/resource.json�����ļ������ݡ�

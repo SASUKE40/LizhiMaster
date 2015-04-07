@@ -38,10 +38,11 @@ var LoadingUI = (function (_super) {
     }
     LoadingUI.prototype.createView = function () {
         this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.y = 300;
         this.textField.width = 480;
         this.textField.height = 100;
+        this.textField.x = (lizhi.getWidth() - this.textField.width) / 2; //���ж�λ
+        this.textField.y = (lizhi.getHeight() - this.textField.height) / 2; //���ж�λ
+        this.addChild(this.textField);
         this.textField.textAlign = "center";
     };
     LoadingUI.prototype.setProgress = function (current, total) {

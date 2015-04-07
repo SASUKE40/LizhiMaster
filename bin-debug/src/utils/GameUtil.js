@@ -32,4 +32,12 @@ var lizhi;
         return result;
     }
     lizhi.createBitmapByName = createBitmapByName;
+    function getHeight() {
+        return egret.MainContext.instance.stage.stageHeight;
+    }
+    lizhi.getHeight = getHeight;
+    function getWidth() {
+        return egret.MainContext.instance.stage.stageWidth;
+    }
+    lizhi.getWidth = getWidth;
 })(lizhi || (lizhi = {}));
