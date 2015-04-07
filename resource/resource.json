@@ -1,0 +1,14 @@
+{
+	"groups":[
+	{
+		"keys":"preloadsheet",
+		"name":"preload"
+	}],
+	"resources":[
+	{
+		"name":"preloadsheet",
+		"subkeys":"bg,over,start,title,banner3,banner2,banner1,banner,top_most,retry,share,cherry,litchi,cherry_1,cherry_2,description,litchi_1,download,count,sound,time,mute",
+		"type":"sheet",
+		"url":"assets/preloadsheet.json"
+	}]
+}

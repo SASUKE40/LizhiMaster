@@ -1,0 +1,6 @@
+[
+	"utils\\GameUtil.ts",
+	"LoadingUI.ts",
+	"lizhi\\GameContainer.ts",
+	"Main.ts"
+]
