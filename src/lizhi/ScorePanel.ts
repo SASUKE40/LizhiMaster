@@ -82,22 +82,7 @@ module lizhi {
         }
 
         private onShare() {
-            if(Data.score >=0 && Data.score <= 19) {
-                share(this.shareMsg((10*Math.random()).toFixed(2)));
-            } else if (Data.score <= 39) {
-                share(this.shareMsg((50-10*Math.random()).toFixed(2)));
-            } else if (Data.score <= 49) {
-                share(this.shareMsg((75-10*Math.random()).toFixed(2)));
-            } else if (Data.score >= 50) {
-                share(this.shareMsg((90-10*Math.random()).toFixed(2)));
-            } else {
-                share(this.shareMsg((100-10*Math.random()).toFixed(2)));
-            }
-        }
-
-        private shareMsg(n:string):string {
-            var msg = "我在《荔枝达人》中摘得" + Data.score + "颗荔枝，击败了" + n + "%的人，不服来战！";
-            return msg;
+            share();
         }
 
         private onOpen() {

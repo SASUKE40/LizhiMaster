@@ -7,8 +7,8 @@ module lizhi {
 
         private fruits:Array<Fruit> = [];
         private levelScore:Array<number> = [20,30,40,50];
-        private level:Array<number> = [0.75,0.6,0.4,0.2];
-        private step:number = 180;
+        private level:Array<number> = [0.5,0.4,0.3,0.2];
+        private step:number = 200;
         private fruitNumber:number = 4;
         /**荔枝聲音*/
         private litchiSound:egret.Sound;

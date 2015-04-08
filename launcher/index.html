@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>荔枝达人</title>
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
     <!-- 删除苹果默认的工具栏和菜单栏 -->
@@ -75,10 +74,10 @@
         }
 
         .sbgshow{display:block;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:30px;line-height:1.7em;background:rgba(0,0,0,0.85);}
-        .sbgshow .arron{ position:absolute;top:0;right:0;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
+        .sbgshow .arron{ position:absolute;top:8px;right:28px;width:50%;height:25%;background:url(./resource/share_3.png) no-repeat;background-size:100% 100%;}
 
         .sbg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:26px;line-height:1.7em;background:rgba(0,0,0,0.85);}
-        .sbg .arron{ position:absolute;top:0;right:0;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
+        .sbg .arron{ position:absolute;top:8px;right:28px;width:50%;height:25%;background:url(./resource/share_3.png) no-repeat;background-size:100% 100%;}
     </style>
 </head>
 <body>
@@ -112,12 +111,15 @@
         document.getElementById("sbg").className="sbg";
     }
 
-    function share(msg) {
+    function result(msg) {
         document.title = window.shareData.tTitle = msg;
+    }
+
+    function share(msg) {
+//        document.title = window.shareData.tTitle = msg;
         document.getElementById("sbg").className="sbgshow";
         window.setTimeout(hiddenMe, 5000);
     }
-
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
 
@@ -167,6 +169,7 @@
     else {
         alert("Egret dose not support your current browser")
     }
+
 </script>
 </body>
 </html>
