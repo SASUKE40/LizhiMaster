@@ -134,23 +134,11 @@ module lizhi {
             this.timer.removeEventListener(egret.TimerEvent.TIMER,this.onTimeDown,this);
             this.timer.removeEventListener(egret.TimerEvent.TIMER_COMPLETE,this.onGameOver,this);
             this.removeChild(this.gamePanel);
-            if(Data.score >=0 && Data.score <= 19) {
-                result(this.shareMsg((10*Math.random()).toFixed(2)));
-            } else if (Data.score <= 39) {
-                result(this.shareMsg((50-10*Math.random()).toFixed(2)));
-            } else if (Data.score <= 49) {
-                result(this.shareMsg((75-10*Math.random()).toFixed(2)));
-            } else if (Data.score >= 50) {
-                result(this.shareMsg((90-10*Math.random()).toFixed(2)));
-            } else {
-                result(this.shareMsg((100-10*Math.random()).toFixed(2)));
-            }
+            var s = this.scorePanel.shareMsg();
+            result(s);
         }
 
-        private shareMsg(n:string):string {
-            var msg = "我在《荔枝达人》中摘得" + Data.score + "颗荔枝，击败了" + n + "%的人，不服来战！";
-            return msg;
-        }
+
 
         private onRetry() {
 
