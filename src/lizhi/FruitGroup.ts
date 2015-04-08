@@ -41,9 +41,13 @@ module lizhi {
                 if(lastFruit.fruitType == FruitType.LITCHI) {
                     Data.score++;
                     this.dispatchEventWith("scoreAdd");
-                    this.litchiSound.play();
+                    if(Data.soundFlat) {
+                        this.litchiSound.play();
+                    }
                 } else {
-                    this.cherrySound.play();
+                    if(Data.soundFlat) {
+                        this.litchiSound.play();
+                    }
                 }
                 if(Data.score < this.levelScore[0]) {
                     var fruit = new Fruit(this.level[0]);

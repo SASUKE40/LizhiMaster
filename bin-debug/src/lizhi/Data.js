@@ -7,6 +7,7 @@ var lizhi;
         function Data() {
         }
         Data.score = 0;
+        Data.soundFlat = true;
         return Data;
     })();
     lizhi.Data = Data;

@@ -10,7 +10,7 @@ module lizhi {
         private sound:egret.Bitmap;
         private soundStop:egret.Bitmap;
         private score:egret.TextField;
-        private soundFlag:boolean = false;
+        private soundFlag:boolean = true;
 
         public constructor() {
             super();
@@ -39,7 +39,12 @@ module lizhi {
             this.soundStop.touchEnabled = true;
             this.soundStop.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onSoundToggle,this);
             this.addChild(this.time);
-            this.addChild(this.sound);
+            this.soundFlag = Data.soundFlat;
+            if (this.soundFlag) {
+                this.addChild(this.sound);
+            } else {
+                this.addChild(this.soundStop);
+            }
 
             this.timeCount = new egret.TextField();
             this.timeCount.textAlign = "center";
@@ -81,6 +86,7 @@ module lizhi {
 
         private onSoundToggle(evt:egret.TouchEvent) {
             this.soundFlag = !this.soundFlag;
+            Data.soundFlat = this.soundFlag;
             if (!this.soundFlag) {
                 this.removeChild(this.sound);
                 this.addChild(this.soundStop);

@@ -13,7 +13,7 @@ var lizhi;
         __extends(ControlPanel, _super);
         function ControlPanel() {
             _super.call(this);
-            this.soundFlag = false;
+            this.soundFlag = true;
             this.createControlPanel();
         }
         ControlPanel.prototype.createControlPanel = function () {
@@ -36,7 +36,13 @@ var lizhi;
             this.soundStop.touchEnabled = true;
             this.soundStop.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSoundToggle, this);
             this.addChild(this.time);
-            this.addChild(this.sound);
+            this.soundFlag = lizhi.Data.soundFlat;
+            if (this.soundFlag) {
+                this.addChild(this.sound);
+            }
+            else {
+                this.addChild(this.soundStop);
+            }
             this.timeCount = new egret.TextField();
             this.timeCount.textAlign = "center";
             this.timeCount.textColor = 0xFFFFFF;
@@ -71,6 +77,7 @@ var lizhi;
         };
         ControlPanel.prototype.onSoundToggle = function (evt) {
             this.soundFlag = !this.soundFlag;
+            lizhi.Data.soundFlat = this.soundFlag;
             if (!this.soundFlag) {
                 this.removeChild(this.sound);
                 this.addChild(this.soundStop);

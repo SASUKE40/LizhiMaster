@@ -41,10 +41,14 @@ var lizhi;
                 if (lastFruit.fruitType == lizhi.FruitType.LITCHI) {
                     lizhi.Data.score++;
                     this.dispatchEventWith("scoreAdd");
-                    this.litchiSound.play();
+                    if (lizhi.Data.soundFlat) {
+                        this.litchiSound.play();
+                    }
                 }
                 else {
-                    this.cherrySound.play();
+                    if (lizhi.Data.soundFlat) {
+                        this.litchiSound.play();
+                    }
                 }
                 if (lizhi.Data.score < this.levelScore[0]) {
                     var fruit = new lizhi.Fruit(this.level[0]);
