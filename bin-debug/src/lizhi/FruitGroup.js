@@ -47,7 +47,7 @@ var lizhi;
                 }
                 else {
                     if (lizhi.Data.soundFlat) {
-                        this.litchiSound.play();
+                        this.cherrySound.play();
                     }
                 }
                 if (lizhi.Data.score < this.levelScore[0]) {

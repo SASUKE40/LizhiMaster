@@ -39,11 +39,11 @@
     <meta name="x5-page-mode" content="app">
     <!-- 适应移动端end -->
     <!-- Icon引入 -->
-    <link type="image/x-icon" href="favicon.ico" rel="shortcut icon">
-    <link rel="apple-touch-icon" href="favicon.ico" />
-    <link rel="icon" href="favicon.ico" />
-    <link rel="Shortcut Icon" href="favicon.ico">
-    <link rel="Bookmark" href="favicon.ico">
+    <link type="image/x-icon" href="./resource/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" href="./resource/favicon.ico" />
+    <link rel="icon" href="./resource/favicon.ico" />
+    <link rel="Shortcut Icon" href="./resource/favicon.ico">
+    <link rel="Bookmark" href="./resource/favicon.ico">
     <!-- Icon引入End -->
     <base href="../"/>    
     <!--[if IE]><script type="text/javascript">
@@ -75,18 +75,16 @@
         }
 
         .sbgshow{display:block;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:30px;line-height:1.7em;background:rgba(0,0,0,0.85);}
-        .sbgshow .arron{ position:absolute;top:8px;right:8px;width:100px;height:100px;background:url(arron.png) no-repeat; background-size:100px 100px;}
-        .sbgshow p{padding-top:78px;}
+        .sbgshow .arron{ position:absolute;top:8px;right:8px;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
+
         .sbg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:26px;line-height:1.7em;background:rgba(0,0,0,0.85);}
-        .sbg .arron{ position:absolute;top:8px;right:8px;width:100px;height:100px;background:url(arron.png) no-repeat; background-size:100px 100px;}
-        .sbg p{padding-top:78px;}
+        .sbg .arron{ position:absolute;top:8px;right:8px;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
     </style>
 </head>
 <body>
 <div style="position:relative;" id="gameDiv"></div>
 <div id="sbg" class="sbg">
     <div class="arron"></div>
-    <p id="msg">请点击右上角<br />点击【分享到朋友圈】<br />让你的小伙伴一起来玩吧！</p>
 </div>
 <script>var document_class = "Main";</script>
 <!--这部分内容在编译时会被替换，要修改文档类，请到工程目录下的egretProperties.json内编辑。-->
@@ -98,16 +96,16 @@
 
 <script>
     window.shareData = {
-        "imgUrl": "http://192.168.9.96:3000/launcher/share_2.png",
-        "timeLineLink": "http://192.168.9.96:3000/launcher/index.html",
+        "imgUrl": "http://192.168.9.96/lizhimaster_v1.0.0/share_2.png",
+        "timeLineLink": "http://192.168.9.96/lizhimaster_v1.0.0/index.html",
         "tTitle": "荔枝达人-最火微信游戏，玩过之后我整个人都精神了！",
         "tContent": "在荔枝和樱桃中摘得更多的荔枝，你就有机会成为荔枝达人。"
     };
 
-    var openurl = "http://a.app.qq.com/o/simple.jsp?pkgname=com.yibasan.lizhifm&g_f=991784#opened";
+    var openurl = "http://192.168.9.96/lizhimaster_v1.0.0/index.html";
 
     function openLink() {
-        window.location.href = openurl;
+        window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.yibasan.lizhifm&g_f=991784#opened";
     }
 
     function hiddenMe() {
@@ -130,7 +128,7 @@
                 "desc": window.shareData.tContent,
                 "title": window.shareData.tTitle
             }, function(res) {
-                document.location.href = mebtnopenurl;
+                document.location.href = openurl;
             })
         });
 
@@ -143,7 +141,7 @@
                 "desc": window.shareData.tContent,
                 "title": window.shareData.tTitle
             }, function(res) {
-                document.location.href = mebtnopenurl;
+                document.location.href = openurl;
             });
         });
 
@@ -153,7 +151,7 @@
                 "content": window.shareData.tContent,
                 "url": window.shareData.timeLineLink
             }, function(res) {
-                document.location.href = mebtnopenurl;
+                document.location.href = openurl;
             });
         });
 

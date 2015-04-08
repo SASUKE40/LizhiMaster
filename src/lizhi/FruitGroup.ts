@@ -46,7 +46,7 @@ module lizhi {
                     }
                 } else {
                     if(Data.soundFlat) {
-                        this.litchiSound.play();
+                        this.cherrySound.play();
                     }
                 }
                 if(Data.score < this.levelScore[0]) {

@@ -1,16 +1,10 @@
 {
 	"groups":[
 	{
-		"keys":"left,right,preloadsheet",
+		"keys":"left,right,title,1,2,3,banner1,banner2,banner3,bg,black,cherry_1,cherry_2,cherry_icon,description_1,description_2,description_3,GO,lizhi,lizhi_icon,most_top,retry,share,sound,sound_stop,star,time",
 		"name":"preload"
 	}],
 	"resources":[
-	{
-		"name":"preloadsheet",
-		"subkeys":"bg,black,description_3,description_2,banner3,banner1,banner2,star,title,most_top,GO,retry,share,cherry_icon,lizhi_icon,cherry_1,cherry_2,description_1,lizhi,3,2,1,sound_stop,sound,time",
-		"type":"sheet",
-		"url":"assets/preloadsheet.json"
-	},
 	{
 		"name":"left",
 		"soundType":"effect",
@@ -22,5 +16,130 @@
 		"soundType":"effect",
 		"type":"sound",
 		"url":"assets/right.mp3"
+	},
+	{
+		"name":"title",
+		"type":"image",
+		"url":"assets/title.png"
+	},
+	{
+		"name":"1",
+		"type":"image",
+		"url":"assets/1.png"
+	},
+	{
+		"name":"2",
+		"type":"image",
+		"url":"assets/2.png"
+	},
+	{
+		"name":"3",
+		"type":"image",
+		"url":"assets/3.png"
+	},
+	{
+		"name":"banner1",
+		"type":"image",
+		"url":"assets/banner1.png"
+	},
+	{
+		"name":"banner2",
+		"type":"image",
+		"url":"assets/banner2.png"
+	},
+	{
+		"name":"banner3",
+		"type":"image",
+		"url":"assets/banner3.png"
+	},
+	{
+		"name":"bg",
+		"type":"image",
+		"url":"assets/bg.png"
+	},
+	{
+		"name":"black",
+		"type":"image",
+		"url":"assets/black.png"
+	},
+	{
+		"name":"cherry_1",
+		"type":"image",
+		"url":"assets/cherry_1.png"
+	},
+	{
+		"name":"cherry_2",
+		"type":"image",
+		"url":"assets/cherry_2.png"
+	},
+	{
+		"name":"cherry_icon",
+		"type":"image",
+		"url":"assets/cherry_icon.png"
+	},
+	{
+		"name":"description_1",
+		"type":"image",
+		"url":"assets/description_1.png"
+	},
+	{
+		"name":"description_2",
+		"type":"image",
+		"url":"assets/description_2.png"
+	},
+	{
+		"name":"description_3",
+		"type":"image",
+		"url":"assets/description_3.png"
+	},
+	{
+		"name":"GO",
+		"type":"image",
+		"url":"assets/GO.png"
+	},
+	{
+		"name":"lizhi",
+		"type":"image",
+		"url":"assets/lizhi.png"
+	},
+	{
+		"name":"lizhi_icon",
+		"type":"image",
+		"url":"assets/lizhi_icon.png"
+	},
+	{
+		"name":"most_top",
+		"type":"image",
+		"url":"assets/most_top.png"
+	},
+	{
+		"name":"retry",
+		"type":"image",
+		"url":"assets/retry.png"
+	},
+	{
+		"name":"share",
+		"type":"image",
+		"url":"assets/share.png"
+	},
+	{
+		"name":"sound",
+		"type":"image",
+		"url":"assets/sound.png"
+	},
+	{
+		"name":"sound_stop",
+		"type":"image",
+		"url":"assets/sound_stop.png"
+	},
+	{
+		"name":"star",
+		"type":"image",
+		"url":"assets/star.png"
+	},
+	{
+		"name":"time",
+		"type":"image",
+		"url":"assets/time.png"
 	}]
 }

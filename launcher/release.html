@@ -2,15 +2,49 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HelloWorld</title>
+    <title>荔枝达人</title>
     <meta name="viewport"
           content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
-    <meta name="full-screen" content="true"/>
-    <meta name="screen-orientation" content="portrait"/>
-    <meta name="x5-fullscreen" content="true"/>
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- 360强制全屏 -->
     <meta name="360-fullscreen" content="true"/>
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- 适应移动端end -->
+    <!-- Icon引入 -->
+    <link type="image/x-icon" href="./resource/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" href="./resource/favicon.ico" />
+    <link rel="icon" href="./resource/favicon.ico" />
+    <link rel="Shortcut Icon" href="./resource/favicon.ico">
+    <link rel="Bookmark" href="./resource/favicon.ico">
+    <!-- Icon引入End -->
 
     <style>
         body {
@@ -32,16 +66,89 @@
             padding: 0;
             border: 0;
         }
+
+
+        .sbgshow{display:block;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:30px;line-height:1.7em;background:rgba(0,0,0,0.85);}
+        .sbgshow .arron{ position:absolute;top:0;right:0;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
+
+        .sbg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;text-align:center;color:#fff;font-size:26px;line-height:1.7em;background:rgba(0,0,0,0.85);}
+        .sbg .arron{ position:absolute;top:0;right:0;width:355px;height:215px;background:url(./resource/share_3.png) no-repeat;background-size:355px 215px;}
     </style>
 </head>
 <body>
 <div style="position:relative;" id="gameDiv"></div>
+
+<div id="sbg" class="sbg">
+    <div class="arron"></div>
+</div>
 <script>var document_class = "Main";</script><!--这部分内容在编译时会被替换，要修改文档类，请到工程目录下的egretProperties.json内编辑。-->
 <!--This part will be replaced during compiling, and to modify the document class, please go to the project directory and edit in the file of egretProperties. Jsonr-->
 <script src="launcher/egret_require.js"></script>
 <script src="launcher/egret_loader.js"></script>
 <script src="launcher/game-min.js"></script>
 <script>
+    window.shareData = {
+        "imgUrl": "http://192.168.9.96:3000/launcher/share_2.png",
+        "timeLineLink": "http://192.168.9.96:3000/launcher/index.html",
+        "tTitle": "荔枝达人-最火微信游戏，玩过之后我整个人都精神了！",
+        "tContent": "在荔枝和樱桃中摘得更多的荔枝，你就有机会成为荔枝达人。"
+    };
+
+    var openurl = "http://a.app.qq.com/o/simple.jsp?pkgname=com.yibasan.lizhifm&g_f=991784#opened";
+
+    function openLink() {
+        window.location.href = openurl;
+    }
+
+    function hiddenMe() {
+        document.getElementById("sbg").className="sbg";
+    }
+
+    function share(msg) {
+        document.title = window.shareData.tTitle = msg;
+        document.getElementById("sbg").className="sbgshow";
+        window.setTimeout(hiddenMe, 5000);
+    }
+
+
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke('sendAppMessage', {
+                "img_url": window.shareData.imgUrl,
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function(res) {
+                document.location.href = mebtnopenurl;
+            })
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function(res) {
+                document.location.href = mebtnopenurl;
+            });
+        });
+
+
+        WeixinJSBridge.on('menu:share:weibo', function(argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.tContent,
+                "url": window.shareData.timeLineLink
+            }, function(res) {
+                document.location.href = mebtnopenurl;
+            });
+        });
+
+    }, false);
+
     var support = [].map && document.createElement("canvas").getContext;
     if (support) {
         egret_h5.startGame();
