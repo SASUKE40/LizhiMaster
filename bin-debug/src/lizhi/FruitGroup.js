@@ -15,7 +15,7 @@ var lizhi;
             _super.call(this);
             this.fruits = [];
             this.levelScore = [20, 30, 40, 50];
-            this.level = [0.5, 0.4, 0.3, 0.2];
+            this.level = [0.5, 0.4, 0.4, 0.4];
             this.step = 200;
             this.fruitNumber = 4;
             this.createFruitGroup();

@@ -122,14 +122,16 @@ module lizhi {
         }
 
         private percentGenerate():string {
-            if(Data.score >=0 && Data.score <= 19) {
-                this.percent = (10*Math.random()).toFixed(1);
+            if(Data.score == 0) {
+                this.percent = "0";
+            } else if (Data.score >0 && Data.score <= 19) {
+                this.percent = (20*Math.random()).toFixed(1);
             } else if (Data.score <= 39) {
-                this.percent = (50-10*Math.random()).toFixed(1);
+                this.percent = (80-10*Math.random()).toFixed(1);
             } else if (Data.score <= 49) {
-                this.percent = (75-10*Math.random()).toFixed(1);
-            } else if (Data.score >= 50) {
                 this.percent = (90-10*Math.random()).toFixed(1);
+            } else if (Data.score >= 50) {
+                this.percent = (100-10*Math.random()).toFixed(1);
             } else {
                 this.percent = (100-10*Math.random()).toFixed(1);
             }

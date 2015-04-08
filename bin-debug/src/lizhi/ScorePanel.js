@@ -103,17 +103,20 @@ var lizhi;
             return Math.floor(Math.random() * 3 + 1);
         };
         ScorePanel.prototype.percentGenerate = function () {
-            if (lizhi.Data.score >= 0 && lizhi.Data.score <= 19) {
-                this.percent = (10 * Math.random()).toFixed(1);
+            if (lizhi.Data.score == 0) {
+                this.percent = "0";
+            }
+            else if (lizhi.Data.score > 0 && lizhi.Data.score <= 19) {
+                this.percent = (20 * Math.random()).toFixed(1);
             }
             else if (lizhi.Data.score <= 39) {
-                this.percent = (50 - 10 * Math.random()).toFixed(1);
+                this.percent = (80 - 10 * Math.random()).toFixed(1);
             }
             else if (lizhi.Data.score <= 49) {
-                this.percent = (75 - 10 * Math.random()).toFixed(1);
+                this.percent = (90 - 10 * Math.random()).toFixed(1);
             }
             else if (lizhi.Data.score >= 50) {
-                this.percent = (90 - 10 * Math.random()).toFixed(1);
+                this.percent = (100 - 10 * Math.random()).toFixed(1);
             }
             else {
                 this.percent = (100 - 10 * Math.random()).toFixed(1);
