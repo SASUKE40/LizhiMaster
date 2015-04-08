@@ -6,6 +6,10 @@
         },
         {
             "name": "res"
+        },
+        {
+            "name":"game"
+            ,"path":"."
         }
     ],
     "native": {

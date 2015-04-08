@@ -7,7 +7,7 @@
 	"resources":[
 	{
 		"name":"preloadsheet",
-		"subkeys":"bg,black,black_share,description_3,description_2,banner3,banner1,banner2,star,title,most_top,GO,retry,share,cherry_icon,lizhi_icon,cherry_1,cherry_2,description_1,lizhi,3,2,1,time,sound",
+		"subkeys":"bg,black,description_3,description_2,banner3,banner1,banner2,star,title,most_top,GO,retry,share,cherry_icon,lizhi_icon,cherry_1,cherry_2,description_1,lizhi,3,2,1,sound_stop,sound,time",
 		"type":"sheet",
 		"url":"assets/preloadsheet.json"
 	},

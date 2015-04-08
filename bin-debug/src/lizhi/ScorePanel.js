@@ -24,6 +24,8 @@ var lizhi;
             this.share = lizhi.createBitmapByName("share");
             this.share.x = (lizhi.getWidth() - this.share.width) / 2 + 160;
             this.share.y = (lizhi.getHeight() - this.share.height) / 2 + 240;
+            this.share.touchEnabled = true; //开启触碰
+            this.share.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onShare, this); //点击按钮分享游戏
             this.addChild(this.share);
             this.description = lizhi.createBitmapByName("description_3");
             this.description.x = (lizhi.getWidth() - this.description.width) / 2;
@@ -55,19 +57,35 @@ var lizhi;
             this.message.stroke = 3;
             this.message.x = 120;
             this.message.y = (lizhi.getHeight() - this.message.height) / 2;
-            this.message.text = "想成为荔枝达人还得眼细手快些哦，再试一次吧~~~";
+            this.message.text = "想成为荔枝达人还得眼细手快些哦,再试一次吧~~~";
             this.message.fontFamily = "幼圆";
             this.message.bold = true;
             this.addChild(this.message);
+            this.banner = lizhi.createBitmapByName("banner" + this.oneThird());
+            this.banner.x = (lizhi.getWidth() - this.banner.width) / 2;
+            this.banner.y = lizhi.getHeight() - this.banner.height;
+            this.banner.touchEnabled = true; //开启触碰
+            this.banner.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onOpen, this); //点击按钮分享游戏
+            this.addChild(this.banner);
         }
         ScorePanel.prototype.onRetry = function () {
             this.dispatchEventWith("retryGame");
         };
+        ScorePanel.prototype.onShare = function () {
+            share(this.msg);
+        };
+        ScorePanel.prototype.onOpen = function () {
+            openLink();
+        };
         ScorePanel.prototype.changeMessage = function (msg) {
+            this.msg = msg;
             this.message.text = msg;
         };
         ScorePanel.prototype.changeScore = function (score) {
             this.score.text = score.toString();
+        };
+        ScorePanel.prototype.oneThird = function () {
+            return Math.floor(Math.random() * 3 + 1);
         };
         return ScorePanel;
     })(egret.Sprite);

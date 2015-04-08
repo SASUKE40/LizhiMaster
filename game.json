@@ -1,0 +1,8 @@
+{
+  "name": "game",
+  "dependence": ["core"],
+  "source":"src",
+  "file_list": [
+      "game.d.ts"
+  ]
+}
