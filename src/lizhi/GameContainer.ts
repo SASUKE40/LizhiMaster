@@ -121,9 +121,9 @@ module lizhi {
             if(Data.score >=0 && Data.score <= 19) {
                 this.scorePanel.changeMessage("想成为荔枝达人还得眼细手快些哦,再试一次吧~~~");
             } else if (Data.score <= 39) {
-                this.scorePanel.changeMessage("有进步哦,还差" + (40 - Data.score) + "个荔枝你就是荔枝达人啦,再挑战一次吧~~");
+                this.scorePanel.changeMessage("有进步哦,还差" + (40 - Data.score) + "个荔枝\n你就是荔枝达人啦,再挑战一次吧~~");
             } else if (Data.score <= 49) {
-                this.scorePanel.changeMessage("荔枝达人驾到!集齐50颗荔枝会有惊喜哦,听说真正的勇者都会再挑战一次的~~~");
+                this.scorePanel.changeMessage("荔枝达人驾到!\n集齐50颗荔枝会有惊喜哦,听说真正的勇者都会再挑战一次的~~~");
             } else if (Data.score >= 50) {
                 this.scorePanel.changeMessage("膜拜,全宇宙无人企及的荔枝大师就是你啦!");
             } else {

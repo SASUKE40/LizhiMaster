@@ -49,7 +49,7 @@ module lizhi {
             this.score.width = getWidth();
             this.score.stroke = 3;
             this.score.x = 10;
-            this.score.y = (getHeight()-this.score.height)/2 - 302;
+            this.score.y = (getHeight()-this.score.height)/2 - 300;
             this.score.text = "0";
             this.score.fontFamily = "微软雅黑";
             this.score.bold = true;
@@ -65,7 +65,7 @@ module lizhi {
             this.per.width = getWidth();
             this.per.stroke = 3;
             this.per.x = 20;
-            this.per.y = (getHeight()-this.per.height)/2 - 230;
+            this.per.y = (getHeight()-this.per.height)/2 - 227;
             this.per.text = "0%";
             this.per.fontFamily = "微软雅黑";
             this.per.bold = true;
