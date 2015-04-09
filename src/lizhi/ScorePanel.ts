@@ -21,14 +21,14 @@ module lizhi {
             this.height = getHeight();
             this.retry = lizhi.createBitmapByName("retry");
             this.retry.x = (lizhi.getWidth()-this.retry.width)/2 - 160;
-            this.retry.y = (lizhi.getHeight()-this.retry.height)/2 + 220;
+            this.retry.y = (lizhi.getHeight()-this.retry.height)/2 + 40;
             this.retry.touchEnabled = true;//开启触碰
             this.retry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onRetry,this);//点击按钮重新游戏
             this.addChild(this.retry);
 
             this.share = lizhi.createBitmapByName("share");
             this.share.x = (lizhi.getWidth()-this.share.width)/2 + 160;
-            this.share.y = (lizhi.getHeight()-this.share.height)/2 + 220;
+            this.share.y = (lizhi.getHeight()-this.share.height)/2 + 40;
             this.share.touchEnabled = true;//开启触碰
             this.share.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onShare,this);//点击按钮分享游戏
             this.addChild(this.share);
@@ -81,7 +81,7 @@ module lizhi {
             this.message.width = getWidth()/1.5;
             this.message.stroke = 2;
             this.message.x = 120;
-            this.message.y = (getHeight()-this.message.height)/2 - 40;
+            this.message.y = (getHeight()-this.message.height)/2 + 220;
             this.message.text = "想成为荔枝达人还得眼细手快些哦,再试一次吧~~~";
             this.message.fontFamily = "幼圆";
             this.message.bold = true;

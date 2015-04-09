@@ -118,7 +118,7 @@
     function share() {
 //        document.title = window.shareData.tTitle = msg;
         document.getElementById("sbg").className="sbgshow";
-        window.setTimeout(hiddenMe, 5000);
+        document.getElementById("sbg").addEventListener("click", hiddenMe, false);
     }
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
