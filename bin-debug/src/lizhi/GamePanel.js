@@ -62,6 +62,13 @@ var lizhi;
         GamePanel.prototype.onGameOver = function () {
             this.dispatchEventWith("gameOver");
         };
+        Object.defineProperty(GamePanel.prototype, "getControlPanel", {
+            get: function () {
+                return this.controlPanel;
+            },
+            enumerable: true,
+            configurable: true
+        });
         return GamePanel;
     })(egret.Sprite);
     lizhi.GamePanel = GamePanel;

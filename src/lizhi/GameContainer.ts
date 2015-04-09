@@ -23,6 +23,7 @@ module lizhi {
         /**計時器*/
         private timeCount:number = 30;
         private timer:egret.Timer;
+        private bgm:egret.Sound;
 
         public constructor() {
             super();
@@ -87,7 +88,6 @@ module lizhi {
             this.tipPanel.addEventListener("countDown", this.onCountDown, this);
         }
 
-
         private onCountDown() {
             this.gamePanel.canTouch();
             this.timeCount = 30;
@@ -96,6 +96,18 @@ module lizhi {
             this.timer.addEventListener(egret.TimerEvent.TIMER,this.onTimeDown,this);
             this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE,this.onGameOver,this);
             this.timer.start();
+            this.bgm = RES.getRes("bgm_mp3");
+            if(Data.soundFlat) {
+                this.bgm.play(true);
+            }
+        }
+
+        private onSoundToggle() {
+            if(!Data.soundFlat) {
+                this.bgm.pause();
+            } else {
+                this.bgm.play(true);
+            }
         }
 
         private init() {
@@ -105,6 +117,7 @@ module lizhi {
             this.gamePanel.y = (this.stageH-this.gamePanel.height)/2;//居中定位
             this.gamePanel.addEventListener("gameOver", this.onGameOver, this);
             this.addChild(this.gamePanel);
+            this.gamePanel.getControlPanel.addEventListener("soundToggle", this.onSoundToggle, this);
         }
 
 
@@ -114,6 +127,7 @@ module lizhi {
         }
 
         private onGameOver() {
+            this.bgm.pause();
             this.scorePanel = new lizhi.ScorePanel();
             this.scorePanel.x = (this.stageW-this.scorePanel.width)/2;//居中定位
             this.scorePanel.y = (this.stageH-this.scorePanel.height)/2;//居中定位

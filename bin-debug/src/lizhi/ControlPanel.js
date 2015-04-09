@@ -86,6 +86,7 @@ var lizhi;
                 this.removeChild(this.soundStop);
                 this.addChild(this.sound);
             }
+            this.dispatchEventWith("soundToggle");
         };
         return ControlPanel;
     })(egret.Sprite);

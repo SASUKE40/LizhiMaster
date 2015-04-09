@@ -80,6 +80,10 @@ module lizhi {
         private onGameOver() {
             this.dispatchEventWith("gameOver");
         }
+
+        public get getControlPanel():lizhi.ControlPanel {
+            return this.controlPanel;
+        }
     }
 
 }

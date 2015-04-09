@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"left,right,title,1,2,3,banner1,banner2,banner3,bg,black,cherry_1,cherry_2,cherry_icon,description_1,description_2,description_3,GO,lizhi,lizhi_icon,most_top,retry,share,sound,sound_stop,star,time",
+		"keys":"left,right,title,1,2,3,banner1,banner2,banner3,bg,black,cherry_1,cherry_2,cherry_icon,description_1,description_2,description_3,GO,lizhi,lizhi_icon,most_top,retry,share,sound,sound_stop,star,time,bgm_mp3",
 		"name":"preload"
 	}],
 	"resources":[
@@ -141,5 +141,10 @@
 		"name":"time",
 		"type":"image",
 		"url":"assets/time.png"
+	},
+	{
+		"name":"bgm_mp3",
+		"type":"sound",
+		"url":"assets/bgm.mp3"
 	}]
 }
