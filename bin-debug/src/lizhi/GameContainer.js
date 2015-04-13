@@ -11,6 +11,7 @@ var lizhi;
 (function (lizhi) {
     var GameContainer = (function (_super) {
         __extends(GameContainer, _super);
+        //private bgm:egret.Sound;
         function GameContainer() {
             _super.call(this);
             /**計時器*/
@@ -74,19 +75,18 @@ var lizhi;
             this.timer.addEventListener(egret.TimerEvent.TIMER, this.onTimeDown, this);
             this.timer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.onGameOver, this);
             this.timer.start();
-            this.bgm = RES.getRes("bgm_mp3");
-            if (lizhi.Data.soundFlat) {
-                this.bgm.play(true);
-            }
+            //this.bgm = RES.getRes("bgm_mp3");
+            //if(Data.soundFlat) {
+            //    this.bgm.play(true);
+            //}
         };
-        GameContainer.prototype.onSoundToggle = function () {
-            if (!lizhi.Data.soundFlat) {
-                this.bgm.pause();
-            }
-            else {
-                this.bgm.play(true);
-            }
-        };
+        //private onSoundToggle() {
+        //    if(!Data.soundFlat) {
+        //        this.bgm.pause();
+        //    } else {
+        //        this.bgm.play(true);
+        //    }
+        //}
         GameContainer.prototype.init = function () {
             lizhi.Data.score = 0;
             this.gamePanel = new lizhi.GamePanel();
@@ -94,14 +94,14 @@ var lizhi;
             this.gamePanel.y = (this.stageH - this.gamePanel.height) / 2; //居中定位
             this.gamePanel.addEventListener("gameOver", this.onGameOver, this);
             this.addChild(this.gamePanel);
-            this.gamePanel.getControlPanel.addEventListener("soundToggle", this.onSoundToggle, this);
+            //this.gamePanel.getControlPanel.addEventListener("soundToggle", this.onSoundToggle, this);
         };
         GameContainer.prototype.onTimeDown = function () {
             this.timeCount--;
             this.gamePanel.changeTime(this.timeCount);
         };
         GameContainer.prototype.onGameOver = function () {
-            this.bgm.pause();
+            //this.bgm.pause();
             this.scorePanel = new lizhi.ScorePanel();
             this.scorePanel.x = (this.stageW - this.scorePanel.width) / 2; //居中定位
             this.scorePanel.y = (this.stageH - this.scorePanel.height) / 2; //居中定位

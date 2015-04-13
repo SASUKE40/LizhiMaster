@@ -31,8 +31,13 @@ class LoadingUI extends egret.Sprite{
         super();
         this.createView();
     }
+
+    // 進度文本
     private textField:egret.TextField;
 
+    /**
+     * 創建加載畫面
+     */
     private createView():void {
         this.textField = new egret.TextField();
         this.textField.width = 480;
@@ -43,6 +48,11 @@ class LoadingUI extends egret.Sprite{
         this.textField.textAlign = "center";
     }
 
+    /**
+     * 設置遊戲進度
+     * @param current
+     * @param total
+     */
     public setProgress(current, total):void {
         this.textField.text = "Loading..." + current + "/" + total;
     }

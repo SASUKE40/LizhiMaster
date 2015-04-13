@@ -3,22 +3,37 @@
  */
 module lizhi {
 
+    /**
+     * 分數面板類
+     */
     export class ScorePanel extends egret.Sprite {
 
+        // 遊戲文本
         private message:egret.TextField;
+        // 分數文本
         private score:egret.TextField;
+        // 重試按鈕
         private retry:egret.Bitmap;
+        // 分享按鈕
         private share:egret.Bitmap;
+        // 分數框
         private description:egret.Bitmap;
+        // 底部banner
         private banner:egret.Bitmap;
+        // 遊戲信息
         private msg:string;
+        // 百分比信息
         private percent:string;
+        // 百分比文本
         private per:egret.TextField;
 
         public constructor() {
             super();
+            // 設置當前精靈對象為屏幕大小
             this.width = getWidth();
             this.height = getHeight();
+
+            // 重試按鈕
             this.retry = lizhi.createBitmapByName("retry");
             this.retry.x = (lizhi.getWidth()-this.retry.width)/2 - 160;
             this.retry.y = (lizhi.getHeight()-this.retry.height)/2 + 40;
@@ -26,6 +41,7 @@ module lizhi {
             this.retry.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onRetry,this);//点击按钮重新游戏
             this.addChild(this.retry);
 
+            // 分享按鈕
             this.share = lizhi.createBitmapByName("share");
             this.share.x = (lizhi.getWidth()-this.share.width)/2 + 160;
             this.share.y = (lizhi.getHeight()-this.share.height)/2 + 40;
@@ -33,18 +49,19 @@ module lizhi {
             this.share.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onShare,this);//点击按钮分享游戏
             this.addChild(this.share);
 
-
+            // 分數框
             this.description = lizhi.createBitmapByName("description_3");
             this.description.x = (lizhi.getWidth()-this.description.width)/2;
             this.description.y = (lizhi.getHeight()-this.description.height)/2 -240;
             this.addChild(this.description);
 
+            // 分數文本
             this.score = new egret.TextField();
             this.score.textColor = 0xfee60e;
             this.score.size = 32;
             this.score.textAlign = egret.HorizontalAlign.CENTER;
             this.score.verticalAlign = egret.VerticalAlign.MIDDLE;
-            //设置描边属性
+            // 设置描边属性
             this.score.strokeColor = 0x883216;
             this.score.width = getWidth();
             this.score.stroke = 3;
@@ -55,6 +72,7 @@ module lizhi {
             this.score.bold = true;
             this.addChild(this.score);
 
+            // 百分比文本
             this.per = new egret.TextField();
             this.per.textColor = 0xfee60e;
             this.per.size = 36;
@@ -71,6 +89,7 @@ module lizhi {
             this.per.bold = true;
             this.addChild(this.per);
 
+            // 遊戲信息文本
             this.message = new egret.TextField();
             this.message.textColor = 0xFFFFFF;
             this.message.size = 32;
@@ -87,6 +106,7 @@ module lizhi {
             this.message.bold = true;
             this.addChild(this.message);
 
+            // 底部banner
             this.banner = createBitmapByName("banner" + this.oneThird());
             this.banner.x = (lizhi.getWidth()-this.banner.width)/2;
             this.banner.y = lizhi.getHeight() - this.banner.height;
@@ -95,32 +115,56 @@ module lizhi {
             this.addChild(this.banner);
         }
 
+        /**
+         * 重試事件響應
+         */
         public onRetry() {
             this.dispatchEventWith("retryGame");
         }
 
+        /**
+         * 分享事件響應
+         */
         private onShare() {
             share();
         }
 
+        /**
+         * 打開鏈接事件響應
+         */
         private onOpen() {
             openLink();
         }
 
-
+        /**
+         * 更改遊戲信息文本
+         * @param msg
+         */
         public changeMessage(msg:string) {
             this.msg = msg;
             this.message.text = msg;
         }
 
+        /**
+         * 更改遊戲分數
+         * @param score
+         */
         public changeScore(score:number) {
             this.score.text = score.toString();
         }
 
+        /**
+         * 獲得[1, 2, 3]其中之一隨機數
+         * @returns {number}
+         */
         private oneThird():number {
             return Math.floor(Math.random()*3+1);
         }
 
+        /**
+         * 根據分數生成百分比
+         * @returns {string}
+         */
         private percentGenerate():string {
             if(Data.score == 0) {
                 this.percent = "0";
@@ -138,6 +182,10 @@ module lizhi {
             return this.percent;
         }
 
+        /**
+         * 分享信息
+         * @returns {string}
+         */
         public shareMsg():string {
             this.percentGenerate();
             this.per.text = this.percent + "%";

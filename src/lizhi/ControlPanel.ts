@@ -3,13 +3,22 @@
  */
 module lizhi {
 
+    /**
+     * 控制面板類
+     */
     export class ControlPanel extends egret.Sprite {
 
+        // 遊戲時間圖標
         private time:egret.Bitmap;
+        // 剩餘時間文本
         private timeCount:egret.TextField;
+        // 遊戲聲音圖片
         private sound:egret.Bitmap;
+        // 禁止聲音圖標
         private soundStop:egret.Bitmap;
+        // 分數文本
         private score:egret.TextField;
+        // 聲音標誌位
         private soundFlag:boolean = true;
 
         public constructor() {
@@ -17,9 +26,14 @@ module lizhi {
             this.createControlPanel();
         }
 
+        /**
+         * 創建控制面板
+         */
         private createControlPanel() {
             this.width = getWidth();
             this.height = getHeight();
+
+            // 初始化元素
             this.time = createBitmapByName("time");
             this.sound = createBitmapByName("sound");
             this.soundStop = createBitmapByName("sound_stop");
@@ -75,15 +89,27 @@ module lizhi {
 
         }
 
+        /**
+         * 更改遊戲分數文本
+         * @param score
+         */
         public changeScore(score:number) {
             var msg = "荔枝数:";
             this.score.text = msg + score;
         }
 
+        /**
+         * 更改遊戲時間文本
+         * @param time
+         */
         public changeTime(time:number) {
             this.timeCount.text = time.toString();
         }
 
+        /**
+         * 切換聲音模式
+         * @param evt
+         */
         private onSoundToggle(evt:egret.TouchEvent) {
             this.soundFlag = !this.soundFlag;
             Data.soundFlat = this.soundFlag;
@@ -94,6 +120,7 @@ module lizhi {
                 this.removeChild(this.soundStop);
                 this.addChild(this.sound);
             }
+            // 轉發事件
             this.dispatchEventWith("soundToggle")
         }
     }
